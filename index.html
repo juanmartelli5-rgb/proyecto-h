@@ -39,6 +39,7 @@ html{scroll-behavior:smooth}
 
 body{
   margin:0;
+  max-width:100%;
   background:var(--ground);
   color:var(--text);
   font-family:var(--body);
@@ -263,7 +264,7 @@ section{padding:clamp(56px,10vw,96px) var(--pad);position:relative}
   font-size:clamp(1.05rem,3.6vw,1.35rem);
   line-height:1.55;
   margin:0 0 20px;
-  max-width:34em;
+  max-width:min(34em,100%);
 }
 .manifiesto p:last-child{margin-bottom:0;color:var(--muted);font-size:clamp(.98rem,3.2vw,1.12rem)}
 .manifiesto strong{color:var(--ice);font-weight:600}
@@ -282,7 +283,7 @@ section{padding:clamp(56px,10vw,96px) var(--pad);position:relative}
   line-height:1.32;
   letter-spacing:-.02em;
   margin:0;
-  max-width:22em;
+  max-width:min(22em,100%);
 }
 .pull footer{
   margin-top:16px;
@@ -316,6 +317,26 @@ section{padding:clamp(56px,10vw,96px) var(--pad);position:relative}
   line-height:1.45;
 }
 .card dd b{color:var(--magenta);font-weight:600}
+
+/* galeria */
+.galeria .grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+}
+.galeria figure{
+  margin:0;min-width:0;overflow:hidden;
+  border-radius:3px;border:1px solid var(--line);background:var(--deep);
+}
+.galeria figure:first-child{grid-column:1/-1}
+.galeria img{
+  display:block;width:100%;max-width:100%;height:auto;
+  object-fit:cover;aspect-ratio:4/5;
+  filter:saturate(1.1) contrast(1.03);
+  transition:transform .5s cubic-bezier(.22,.9,.3,1),filter .4s;
+}
+.galeria figure:first-child img{aspect-ratio:5/4}
+.galeria figure:hover img{transform:scale(1.04);filter:saturate(1.25) contrast(1.06)}
 
 /* datos */
 .facts{list-style:none;margin:0;padding:0}
@@ -418,7 +439,7 @@ section{padding:clamp(56px,10vw,96px) var(--pad);position:relative}
 .eq.on i:nth-child(4){animation-delay:.45s}
 @keyframes bounce{0%,100%{height:3px}50%{height:16px}}
 
-#sc-frame{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px}
+#sc-frame{position:fixed;bottom:0;left:0;width:1px;height:1px;opacity:0;border:0;pointer-events:none}
 
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
